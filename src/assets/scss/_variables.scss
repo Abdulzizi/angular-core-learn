@@ -1261,7 +1261,7 @@ $dropdown-dark-header-color:        $gray-500;
 // Pagination
 
 // scss-docs-start pagination-variables
-$pagination-padding-y:              .5rem;
+$pagination-padding-y:              .075rem;
 $pagination-padding-x:              .75rem;
 $pagination-padding-y-sm:           .25rem;
 $pagination-padding-x-sm:           .5rem;
@@ -1272,7 +1272,7 @@ $pagination-font-size:              $font-size-base ;
 $pagination-color:                  var(--#{$prefix}gray-600);
 $pagination-bg:                     var(--#{$prefix}custom-white);
 $pagination-border-width:           $border-width;
-$pagination-border-radius:          $border-radius;
+$pagination-border-radius:          0;
 $pagination-margin-start:           -$pagination-border-width;
 $pagination-border-color:           var(--#{$prefix}gray-400);
 

@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <table class="table table-hover">
+                    <table class="table table-hover" datatable [dtOptions]="dtOptions">
                         <thead class="thead-light">
                             <tr>
                                 <th></th>
@@ -50,9 +50,7 @@
 <ng-template #formUser let-modal>
     <div class="modal-header">
         <h5 class="modal-title mt-0">{{titleModal}}</h5>
-        <button type="button" class="close" (click)="modal.close()" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+        <button type="button" class="btn-close" (click)="modal.close()" aria-label="Close"></button>
     </div>
     <div class="modal-body">
         <app-form-user [userId]="userId" (afterSave)="modal.close(); getUser()"></app-form-user>
