@@ -14,11 +14,21 @@ export class ListUserComponent implements OnInit {
 
   listUser: any;
   titleModal: string;
-  userId: number;
+  userId: string;
 
+  /**
+   * Mendapatkan referensi ke DataTableDirective
+   * yang digunakan untuk reload datatable
+   */
   @ViewChild(DataTableDirective)
   dtElement: DataTableDirective;
+
+  /**
+   * Mendapatkan instance DataTables.Api
+   * yang digunakan untuk reload datatable
+   */
   dtInstance: Promise<DataTables.Api>;
+
   dtOptions: any;
   filter: {
     name: ''
@@ -35,15 +45,19 @@ export class ListUserComponent implements OnInit {
     this.getUser();
   }
 
+  /**
+   * Mengambil data user dari server
+   * dan mengatur konfigurasi DataTables
+   */
   getUser() {
     this.dtOptions = {
       serverSide: true,
       processing: true,
       ordering: false,
-      pageLength: 3,
+      pageLength: 2,
       ajax: (dtParams: any, callback) => {
         const params = {
-          ...this.filter,
+          name: this.filter.name,
           per_page: dtParams.length,
           page: (dtParams.start / dtParams.length) + 1,
         };
@@ -79,7 +93,7 @@ export class ListUserComponent implements OnInit {
    }
   createUser(modalId) {
     this.titleModal = 'Tambah User';
-    this.userId = 0;
+    this.userId = '';
     this.modalService.open(modalId, { size: 'lg', backdrop: 'static' });
   }
 

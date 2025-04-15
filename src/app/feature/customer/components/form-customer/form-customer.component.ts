@@ -1,35 +1,35 @@
-import { Component, Input, OnInit, Output, EventEmitter, SimpleChange } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChange } from '@angular/core';
+import { CustomerService } from '../../services/customer.service';
 import { LandaService } from 'src/app/core/services/landa.service';
-import { UserService } from '../../services/user.service';
 
 @Component({
-  selector: 'app-form-user',
-  templateUrl: './form-user.component.html',
-  styleUrls: ['./form-user.component.scss']
+  selector: 'app-form-customer',
+  templateUrl: './form-customer.component.html',
+  styleUrls: ['./form-customer.component.scss']
 })
-export class FormUserComponent implements OnInit {
-  readonly MODE_CREATE = 'add';
-  readonly MODE_UPDATE = 'update';
+export class FormCustomerComponent {
+  constructor(
+    private customerService: CustomerService,
+    private landaService: LandaService
+  ) { }
 
-  @Input() userId: string;
+  @Input() customerId: String;
   @Output() afterSave = new EventEmitter<boolean>();
 
+  readonly MODE_CREATE = 'add';
+  readonly MODE_UPDATE = 'update';
   activeMode: string;
   formModel: {
     id: string,
     name: string,
     email: string,
     password: string
-  }
-
-  constructor(
-    private userService: UserService,
-    private landaService: LandaService
-  ) { }
-
-  ngOnInit(): void {
-    this.getUser(this.userId);
-  }
+  } = {
+      id: '',
+      name: '',
+      email: '',
+      password: ''
+    };
 
   ngOnChanges(changes: SimpleChange) {
     this.resetForm();
@@ -43,9 +43,9 @@ export class FormUserComponent implements OnInit {
       password: ''
     }
 
-    if (this.userId > '') {
+    if (this.customerId > '') {
       this.activeMode = this.MODE_UPDATE;
-      this.getUser(this.userId);
+      this.getCustomer(this.customerId);
       return true;
     }
 
@@ -53,8 +53,8 @@ export class FormUserComponent implements OnInit {
     return false;
   }
 
-  getUser(userId) {
-    this.userService.getUserById(userId).subscribe((res: any) => {
+  getCustomer(customerId) {
+    this.customerService.getCustomerById(customerId).subscribe((res: any) => {
       this.formModel = res.data;
     }, err => {
       console.log(err);
@@ -73,7 +73,7 @@ export class FormUserComponent implements OnInit {
   }
 
   insert() {
-    this.userService.createUser(this.formModel).subscribe((res: any) => {
+    this.customerService.createCustomer(this.formModel).subscribe((res: any) => {
       this.landaService.alertSuccess('Berhasil', res.message);
       this.afterSave.emit();
     }, err => {
@@ -82,12 +82,11 @@ export class FormUserComponent implements OnInit {
   }
 
   update() {
-    this.userService.updateUser(this.formModel).subscribe((res: any) => {
+    this.customerService.updateCustomer(this.formModel).subscribe((res: any) => {
       this.landaService.alertSuccess('Berhasil', res.message);
       this.afterSave.emit();
     }, err => {
       this.landaService.alertError('Mohon Maaf', err.error.errors);
-    });
+    })
   }
-
 }

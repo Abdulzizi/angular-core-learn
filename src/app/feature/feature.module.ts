@@ -7,6 +7,8 @@ import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { FeatureRoutingModule } from './feature-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserModule } from './user/user.module';
+import { CustomerModule } from './customer/customer.module';
+import { ProductModule } from './product/product.module';
 
 // const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 //     suppressScrollX: true,
@@ -21,7 +23,9 @@ import { UserModule } from './user/user.module';
         CommonModule,
         FeatureRoutingModule,
         // PerfectScrollbarModule,
-        UserModule
+        UserModule,
+        CustomerModule,
+        ProductModule
     ],
     // providers: [
     //     {

@@ -1,0 +1,78 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-transparent">
+                <div class="card-header d-flex justify-content-between">
+                    <h1>
+                        Daftar Customer
+                    </h1>
+                    <div class="row mx-0">
+                        <div class="col">
+                            <form class="form-inline">
+                                <div class="form-group">
+                                    <div class="input-group input-group-sm me-2">
+                                        <input type="text" class="form-control form-control-sm"
+                                            placeholder="masukkan nama" [(ngModel)]="filter.name" name="name" />
+                                        <div class="input-group-append" (click)="reloadDataTable()">
+                                            <span class="input-group-text">
+                                                <em class="fa fa-search"></em>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="px-0" style="width: fit-content;">
+                            <div role="group" class="btn-group btn-group-sm btn-group-justified blocks">
+                                <button type="button" class="btn btn-sm btn-primary" (click)="createCustomer(formCustomer)">
+                                    <em class="fa fa-plus font-size-14 align-middle me-1"></em> Tambah User
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table table-hover" datatable [dtOptions]="dtOptions">
+                        <thead class="thead-light">
+                            <tr>
+                                <th></th>
+                                <th>Nama</th>
+                                <th>Email</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let customer of listCustomer;">
+                                <td><img src="{{customer.photo_url}}" alt="" class="rounded-circle img-thumb" /></td>
+                                <td class="vertical-middle">{{customer.name}}</td>
+                                <td class="vertical-middle">{{customer.email}}</td>
+                                <td class="vertical-middle text-right">
+                                    <a href="javascript: void(0);" class="align-middle me-2"
+                                        (click)="updateCustomer(formCustomer, customer)" placement="left" container="body"
+                                        ngbTooltip="Ubah">
+                                        <em class="fa fa-edit font-size-14"></em>
+                                    </a>
+                                    <a href="javascript: void(0);" class="align-middle"
+                                        (click)="deleteCustomer(customer.id)" placement="left" container="body"
+                                        ngbTooltip="Hapus">
+                                        <em class="fa fa-trash font-size-14"></em>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #formCustomer let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title mt-0">{{ titleModal }}</h5>
+        <button type="button" class="btn-close" (click)="modal.close()" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+        <app-form-customer [customerId]="customerId" (afterSave)="modal.close(); getCustomer()"></app-form-customer>
+    </div>
+</ng-template>
