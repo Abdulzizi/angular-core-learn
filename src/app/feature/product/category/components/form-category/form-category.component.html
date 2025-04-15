@@ -1,4 +1,5 @@
 <form>
+    <br>
     <div class="form-group row">
         <label class="col-md-4 required">Nama</label>
         <div class="col-md-8">
@@ -6,6 +7,15 @@
                 placeholder="Nama Category">
         </div>
     </div>
+    <br>
+    <div class="form-group row">
+        <label class="col-md-4 required">Description</label>
+        <div class="col-md-8">
+            <input [(ngModel)]="formModel.description" type="text" name="desc" class="form-control"
+                placeholder="Desc Category">
+        </div>
+    </div>
+    <br>
     <div class="form-group row">
         <label class="col-md-4"></label>
         <div class="col-md-8">
