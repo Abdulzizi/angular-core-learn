@@ -35,7 +35,7 @@
                     <table class="table table-hover" datatable [dtOptions]="dtOptions">
                         <thead class="thead-light">
                             <tr>
-                                <th></th>
+                                <!-- <th></th> -->
                                 <th>Nama</th>
                                 <th>Email</th>
                                 <th></th>
@@ -43,7 +43,7 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let customer of listCustomer;">
-                                <td><img src="{{customer.photo_url}}" alt="" class="rounded-circle img-thumb" /></td>
+                                <!-- <td><img src="{{customer.photo_url}}" alt="" class="rounded-circle img-thumb" /></td> -->
                                 <td class="vertical-middle">{{customer.name}}</td>
                                 <td class="vertical-middle">{{customer.email}}</td>
                                 <td class="vertical-middle text-right">

@@ -47,7 +47,7 @@
         <li class="nav-item dropdown" ngbDropdown>
           <a class="nav-link dropdown-toggle" [class.active] = "['user'].includes(url)" (click)="onMenuClick($event)" href="javascript: void(0);"
             id="topnav-components" role="button" ngbDropdownToggle>
-            <i class="bx bx-cog me-2"></i>Setting
+            <i class="bx bx-cog me-2"></i>Master
             <div class="arrow-down"></div>
           </a>
           <div class="dropdown-menu row" ngbDropdownMenu>
@@ -74,7 +74,7 @@
           </li>
           <li class="nav-item dropdown" id="steps-setting">
             <a class="nav-link dropdown-toggle arrow-none side-nav-link-ref" [class.active] = "['user'].includes(url)" href="javascript: void(0);" id="topnav-setting" role="button">
-              <i class="fas fa-cog me-2"></i> Setting
+              <i class="fas fa-cog me-2"></i> Master
               <div class="ms-sm-1 arrow-down"></div>
             </a>
             <div class="dropdown-menu">
@@ -86,7 +86,7 @@
                   Customer
                 </a>
                 <a class="dropdown-item dropdown-toggle arrow-none side-nav-link-ref" href="javascript: void(0);" [routerLink]="['/category']" id="topnav-customer" role="button">
-                  Category
+                  Menu Category
                 </a>
                 <a class="dropdown-item dropdown-toggle arrow-none side-nav-link-ref" href="javascript: void(0);" [routerLink]="['/product']" id="topnav-customer" role="button">
                   Product
@@ -94,6 +94,21 @@
               </div>
             </div>
           </li>
+
+          <li class="nav-item dropdown" id="steps-setting">
+            <a class="nav-link dropdown-toggle arrow-none side-nav-link-ref" [class.active] = "['user'].includes(url)" href="javascript: void(0);" id="topnav-setting" role="button">
+              <i class="fas fa-cog me-2"></i> Transaksi
+              <div class="ms-sm-1 arrow-down"></div>
+            </a>
+            <div class="dropdown-menu">
+              <div class="dropdown">
+
+                
+                
+              </div>
+            </div>
+          </li>
+
         </ul>
       </div>
     </nav>

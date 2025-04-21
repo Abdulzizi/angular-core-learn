@@ -1,0 +1,25 @@
+.form-label {
+    font-weight: 500;
+  }
+  
+  .required::after {
+    content: '*';
+    color: red;
+    margin-left: 4px;
+  }
+  
+  .table th,
+  .table td {
+    vertical-align: middle;
+  }
+  
+  .btn {
+    min-width: 100px;
+    font-weight: 500;
+  }
+  
+  .form-check-inline {
+    margin-right: 0;
+  }
+  
+  

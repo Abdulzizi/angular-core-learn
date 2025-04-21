@@ -67,7 +67,7 @@ export class ListProductComponent {
 
   createProduct(modalId) {
     this.titleModal = "Create Product";
-    this.productId = "";
+    this.productId = null;
     this.modalService.open(modalId, { size: "lg", backdrop: "static" });
   }
 

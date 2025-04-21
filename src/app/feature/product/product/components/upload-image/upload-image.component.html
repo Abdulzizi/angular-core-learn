@@ -1,0 +1,37 @@
+<div class="upload-image-wrapper text-center p-3 border rounded shadow-sm">
+  <p class="text-muted mb-3">Upload Gambar</p>
+
+  <!-- File Input -->
+  <input
+    type="file"
+    class="form-control mb-3"
+    (change)="fileChangeEvent($event)"
+    accept="image/*" />
+
+  <!-- Image Cropper -->
+  <image-cropper
+    *ngIf="imageChangedEvent"
+    class="mb-3 d-block mx-auto"
+    [imageChangedEvent]="imageChangedEvent"
+    [maintainAspectRatio]="true"
+    [aspectRatio]="3 / 3"
+    format="png"
+    (imageCropped)="imageCropped($event)">
+  </image-cropper>
+
+  <!-- Preview & Button -->
+  <div *ngIf="croppedImage" class="mt-3">
+    <img [src]="croppedImage" class="img-thumbnail mb-2 shadow-sm" style="max-width: 200px;" />
+    <div>
+      <button class="btn btn-sm btn-primary" (click)="submitCroppedImage(); imageChangedEvent = null;" *ngIf="!isImageCropped">
+        Gunakan Gambar
+      </button>
+    </div>
+  </div>
+
+  <!-- Message when no image selected -->
+  <div *ngIf="!imageChangedEvent && !croppedImage" class="mt-3 text-muted">
+    <p>Silakan unggah gambar untuk memulai.</p>
+  </div>
+</div>
+
