@@ -1,16 +1,22 @@
-import { Component, EventEmitter, Output, Input } from "@angular/core";
+import {
+  Component,
+  EventEmitter,
+  Output,
+  Input,
+  OnChanges,
+  SimpleChanges,
+} from "@angular/core";
 
 @Component({
   selector: "app-upload-image",
   templateUrl: "./upload-image.component.html",
   styleUrls: ["./upload-image.component.scss"],
 })
-export class UploadImageComponent {
+export class UploadImageComponent implements OnChanges {
   @Input() defaultImage: string | null = null;
   @Output() onSubmit = new EventEmitter<string>();
 
   isImageCropped: boolean = false;
-
   imageChangedEvent: any = "";
   croppedImage: string = "";
 
@@ -35,5 +41,12 @@ export class UploadImageComponent {
     this.isImageCropped = true;
 
     this.onSubmit.emit(this.croppedImage);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes["defaultImage"] && this.defaultImage) {
+      this.croppedImage = this.defaultImage;
+      this.isImageCropped = true;
+    }
   }
 }

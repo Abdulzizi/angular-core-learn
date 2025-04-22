@@ -34,6 +34,7 @@ export class FormProductComponent implements OnInit, OnChanges {
   showLoading = false;
 
   formModel = {
+    id: null,
     name: "",
     price: null,
     description: "",
@@ -65,10 +66,11 @@ export class FormProductComponent implements OnInit, OnChanges {
 
   resetForm() {
     this.formModel = {
+      id: null,
       name: "",
       price: null,
       description: "",
-      is_available: true,
+      is_available: null,
       product_category_id: null,
       photo_url: "",
       details: [],
@@ -82,6 +84,7 @@ export class FormProductComponent implements OnInit, OnChanges {
       next: (res: any) => {
         const data = res.data;
         this.formModel = {
+          id: data.id,
           name: data.name,
           price: data.price,
           description: data.description,
@@ -147,19 +150,31 @@ export class FormProductComponent implements OnInit, OnChanges {
   }
 
   insert(payload: any) {
-    console.log("FormModel:", this.formModel);
-    // this.productService.createProduct(payload).subscribe({
-    //   next: () => {
-    //     this.afterSave.emit(true);
-    //   },
-    //   error: (err) => {
-    //     this.landaService.alertError("Mohon Maaf", err.error.errors);
-    //   },
-    // });
+    const transformedPayload = {
+      ...payload,
+      is_available: payload.is_available ? 1 : 0, // true → 1, false → 0
+    };
+
+    console.log("FormModel:", transformedPayload);
+    this.productService.createProduct(transformedPayload).subscribe({
+      next: () => {
+        this.afterSave.emit(true);
+      },
+      error: (err) => {
+        this.landaService.alertError("Mohon Maaf", err.error.errors);
+      },
+    });
   }
 
   update(payload: any) {
-    this.productService.updateProduct(payload).subscribe({
+    const transformedPayload = {
+      ...payload,
+      is_available: payload.is_available ? 1 : 0, // true → 1, false → 0
+    };
+
+    console.log("FormModel:", transformedPayload);
+
+    this.productService.updateProduct(transformedPayload).subscribe({
       next: () => {
         this.afterSave.emit(true);
       },
